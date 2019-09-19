@@ -5,7 +5,6 @@
  * Client code or runner code
  */
 public class DoMath {
-
 	public static void main(String[] args) {
 		System.out.println(Calculate.square(12));
 		System.out.println(Calculate.cube(2));
@@ -27,6 +26,6 @@ public class DoMath {
 		System.out.println(Calculate.factorial(0));
 		System.out.println(Calculate.isPrime(4));
 		System.out.println(Calculate.gcf(1, 1));
+		System.out.println(Calculate.sqrt(10));
 	}
-
 }

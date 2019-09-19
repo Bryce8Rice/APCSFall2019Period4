@@ -203,7 +203,17 @@ public class Calculate {
 	
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to two decimals.
 	//It accepts a double and returns a double.
-	public static double sqrt(double number) {
-		return number;
+	public static double sqrt(double numToRoot) {
+		double sqrt = 0;
+		for(double i = 0; i * i <= numToRoot; i+=0.001) {
+			sqrt = i;
+		}
+		return round2(sqrt);
+	}
+	
+	public static String quadForm(int a, int b, int c) {
+		double discrim = discriminant(a,b,c);
+		double root = (-b + sqrt(discrim))/(2*a);
+		
 	}
 }
