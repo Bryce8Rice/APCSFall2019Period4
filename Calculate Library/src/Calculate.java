@@ -82,8 +82,11 @@ public class Calculate {
 	
 	//A call to isDivisibleBy determines whether or not one integer is evenly divisible by another.
 	//It accepts two integers and returns a boolean.
-	public static boolean isDivisibleBy(int number1, int number2) {
-		if(number1 % number2 == 0) {
+	public static boolean isDivisibleBy(int numToDivide, int numDivideBy) {
+		if(numDivideBy == 0) {
+			throw new IllegalArgumentException("Cannot divide by a zero");
+		}
+		if(numToDivide % numDivideBy == 0) {
 			return true;
 		} else {
 			return false;
@@ -148,24 +151,27 @@ public class Calculate {
 	//A call to exponent raises a value to a positive integer power.
 	//It accepts a double and an integer and returns a double.
 	public static double exponent(double base, int power) {
-		double answer = 1;
+		double exponent = 1;
 		if(power > 0) {
 			for(int i = 1; i <= power; i++) {
-				answer *= base;
+				exponent *= base;
 			}
-			return answer;
+			return exponent;
 		} else if(power < 0) {
 			for(int i = -1; i >= power; i--) {
-				answer = 1/(answer * base);
+				exponent *= base;
 			}
-			return answer;
+			return 1/exponent;
 		}
-		return answer;
+		return exponent;
 	}
 	
 	//A call to factorial returns the factorial of the value passed.
 	//It accepts an integer and returns an integer.
 	public static int factorial(int number) {
+		if(number < 0) {
+			throw new IllegalArgumentException("Cannot get the factorial of a negative number");
+		}
 		int answer = 1;
 		if(number > 0) {
 			for(int i = 2; i <= number; i++) {
@@ -204,6 +210,9 @@ public class Calculate {
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to two decimals.
 	//It accepts a double and returns a double.
 	public static double sqrt(double numToRoot) {
+		if(numToRoot < 0) {
+			throw new IllegalArgumentException("Cannot square root a negative number");
+		}
 		double sqrt = 0;
 		for(double i = 0; i * i <= numToRoot; i+=0.001) {
 			sqrt = i;
@@ -211,9 +220,18 @@ public class Calculate {
 		return round2(sqrt);
 	}
 	
+	//A call to quadForm uses the coefficients of a quadratic equation in standard form and uses the quadratic formula to approximate the real roots, if any.
+	//Ut accepts three integers and returns a string.
 	public static String quadForm(int a, int b, int c) {
 		double discrim = discriminant(a,b,c);
-		double root = (-b + sqrt(discrim))/(2*a);
-		
+		if(discrim < 0) {
+			return "no real roots";
+		}
+		if(discrim == 0) {
+			return -b/(2*a) + "";
+		}
+		double firstRoot = (-b + sqrt(discrim))/(2*a);
+		double secondRoot = (-b - sqrt(discrim))/(2*a);
+		return round2(firstRoot) + " and " + round2(secondRoot);
 	}
 }
