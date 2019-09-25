@@ -1,4 +1,4 @@
-/*Bryce Wang
+/* Bryce Wang
  * August 19, 2019
  * Period 4
  * Group of methods that perform math calculations (a library)
@@ -221,7 +221,7 @@ public class Calculate {
 	}
 	
 	//A call to quadForm uses the coefficients of a quadratic equation in standard form and uses the quadratic formula to approximate the real roots, if any.
-	//Ut accepts three integers and returns a string.
+	//It accepts three integers and returns a string.
 	public static String quadForm(int a, int b, int c) {
 		double discrim = discriminant(a,b,c);
 		if(discrim < 0) {

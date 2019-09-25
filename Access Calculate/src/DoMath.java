@@ -1,4 +1,4 @@
-/*Bryce Wang
+/* Bryce Wang
  * August 29, 2019
  * Period 4
  * Call math methods from the calculate library
