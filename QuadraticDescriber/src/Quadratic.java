@@ -7,19 +7,22 @@
 public class Quadratic {
 	public static String quadrDescriber(double a, double b, double c) {
 		String graphDescrip = "Description of the graph of: \n" + a + " x^2 + " + b + " x + " + c + "\n\n";
-		String direction;
-		if(a > 0) {
-			direction = "Opens: Up";
+		String direction = "Opens: ";
+		if(a > 0) {	
+			direction += "Up\n";
+		} else if (a < 0){
+			direction += "Down\n";
 		} else {
-			direction = "Opens: Down";
+			direction = "Not a quadratic function";
 		}
-		double x = -b/(2*a);
-		double y = a * x + b * x + c;
-		String axisOfSym = "Axis of Symmetry: " + x;
-		String vertex = "(" + x + ", " + y + ")\n";
+		double x = (-b)/(2*a);
+		double y = a*x + b*x + c;
+		String axisOfSym = "Axis of Symmetry: " + x + "\n";
+		String vertex = "Vertex: (" + x + ", " + y + ")\n";
 		String xIntercept = "x-intercept(s): " + quadForm(a,b,c) + "\n";
-		String yIntercept = "y-intercept(s): " + c;
-		return graphDescrip + direction + axisOfSym + vertex + xIntercept + yIntercept;
+		String yIntercept = "y-intercept(s): " + c + "\n\n";
+		String keepGoing = "Do you want to keep going? (Type \"quit\" to end)";
+		return graphDescrip + direction + axisOfSym + vertex + xIntercept + yIntercept + keepGoing;
 	}
 
 	public static double discriminant(double a, double b, double c) {

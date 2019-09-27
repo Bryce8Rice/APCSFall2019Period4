@@ -7,17 +7,23 @@ import java.util.Scanner;
 
 public class QuadraticClient {
 	public static void main(String[] args) {
+		double a;
+		double b;
+		double c;
+		String quit = "";
 		System.out.println("Welcome to the Quadratic Describer");
 		System.out.println("Provide values for coefficients a, b, c");
 		Scanner userInput = new Scanner(System.in);
-		System.out.println("a: ");
-		double a = userInput.nextDouble();
-		System.out.println("b: ");
-		double b = userInput.nextDouble();
-		System.out.println("c: ");
-		double c = userInput.nextDouble();
-		System.out.println();
-		System.out.println(Quadratic.quadrDescriber(a, b, c));
-		System.out.println();
+		while(!quit.equals("quit")) {	
+			System.out.print("\na: ");
+			a = userInput.nextDouble();
+			System.out.print("b: ");
+			b = userInput.nextDouble();
+			System.out.print("c: ");
+			c = userInput.nextDouble();
+			System.out.println(Quadratic.quadrDescriber(a, b, c));
+			quit = userInput.next();
+		}
+		userInput.close();
 	}
 }
