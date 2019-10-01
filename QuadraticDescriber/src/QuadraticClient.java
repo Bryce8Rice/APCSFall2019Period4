@@ -1,7 +1,7 @@
 /* Bryce Wang
  * September 23, 2019
  * Period 4
- * Call quadratic methods and handles interactions with user.
+ * Call quadrDescriber method and handles interactions with user.
  */
 import java.util.Scanner;
 
