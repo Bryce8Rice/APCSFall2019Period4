@@ -10,6 +10,7 @@ public class ProcessingNumbers {
 	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
 		System.out.print("How many numbers? ");
+		int numNum = userInput.nextInt();
 		int first = userInput.nextInt();
 		int max = first;
 		int min = first;
