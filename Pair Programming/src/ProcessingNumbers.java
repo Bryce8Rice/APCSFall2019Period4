@@ -15,8 +15,8 @@ public class ProcessingNumbers {
 		int first = userInput.nextInt();
 		int max = first;
 		int min = first;
-		int sum = 0;
 		int largestEven = first;
+		int sum = 0;
 		if(first % 2 == 0) {
 			sum += first;
 		}
@@ -42,7 +42,11 @@ public class ProcessingNumbers {
 		System.out.println("The smallest number is: " + min);
 		System.out.println("The largest number is: " + max);
 		System.out.println("The sum of all even numbers is: " + sum);
-		System.out.println("The largest even number is: " + largestEven);
+		if(largestEven % 2 == 0) {
+			System.out.println("The largest even number is: " + largestEven);
+		} else {
+			System.out.println("There are no even numbers");
+		}
 		userInput.close();
 	}
 }
