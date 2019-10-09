@@ -11,12 +11,16 @@ public class ProcessingNumbers {
 		Scanner userInput = new Scanner(System.in);
 		System.out.print("How many numbers? ");
 		int numNum = userInput.nextInt();
+		System.out.print("Number 1: ");
 		int first = userInput.nextInt();
 		int max = first;
 		int min = first;
 		int sum = 0;
-		int largestEven = 0;
-		for(int i = 1; i <= numNum; i++) {
+		int largestEven = first;
+		if(first % 2 == 0) {
+			sum += first;
+		}
+		for(int i = 2; i <= numNum; i++) {
 			System.out.print("Number " + i + ": ");
 			int num = userInput.nextInt();
 			if(num > max) {
@@ -26,6 +30,9 @@ public class ProcessingNumbers {
 				min = num;
 			}
 			if(num % 2 == 0) {
+				if(largestEven % 2 != 0) {
+					largestEven = num;
+				}
 				sum += num;
 				if(num > largestEven) {
 					largestEven = num;
