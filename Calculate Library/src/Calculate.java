@@ -74,7 +74,7 @@ public class Calculate {
 	//A call to foil converts a binomial multiplication of the form(ax + b)(cx+ d) into a quadratic equation of the form ax^2 + bx +c.
 	//It accepts four integers and a String and then returns a String.
 	public static String foil(int number1, int number2, int number3, int number4, String x) {
-		int a = number1 * number2;
+		int a = number1 * number3;
 		int b = (number1 * number4) + (number2 * number3);
 		int c = number2 * number4;
 		return a + x + "^2" + " + " + b + x + " + " + c;
@@ -199,12 +199,12 @@ public class Calculate {
 	//A call to gcf finds the greatest common factor of two integers.
 	//It accepts two positive integers and returns an integer.
 	public static int gcf(int number1, int number2) {
-		for(int i = 2; i < number1 * number2; i++) {
+		for(int i = 2; i <= number1; i++) {
 			if(isDivisibleBy(i, number1) && isDivisibleBy(i, number2)) {
 				return i;
 			}
 		}
-		return number1 * number2;
+		return 1;
 	}
 	
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to two decimals.
@@ -232,6 +232,10 @@ public class Calculate {
 		}
 		double firstRoot = (-b + sqrt(discrim))/(2*a);
 		double secondRoot = (-b - sqrt(discrim))/(2*a);
-		return round2(firstRoot) + " and " + round2(secondRoot);
+		if(firstRoot < secondRoot) {
+			return round2(firstRoot) + " and " + round2(secondRoot);
+		} else {
+			return round2(secondRoot) + " and " + round2(firstRoot);
+		}
 	}
 }
