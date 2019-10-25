@@ -5,26 +5,38 @@ public class Hourglass {
 		Scanner userInput = new Scanner(System.in);
 		System.out.print("How big is your hourglass? ");
 		int size = userInput.nextInt();
-		System.out.print("|");
+		top(size);
+		
+		userInput.close();
+	}
+	
+	public static void top(int size) {
+		String top = "";
+		top += "|";
 		for(int quote = 1; quote <= size; quote++) {
-			System.out.print("\"");
+			top += "\"";
 		}
-		System.out.println("|");
+		top += "|\n";
 		for(int line = 1; line <= size/2-1; line++) {
 			for(int space = 1; space <= line; space++) {
-				System.out.print(" ");
+				top += " ";
 			}
-			System.out.print("\\");
+			top += "\\";
 			for(int colon = 1; colon <= -2*line+size; colon++) {
-				System.out.print(":");
+				top += ":";
 			}
-			System.out.println("/");
+			top += "/\n";
 		}
 		for(int mid = 1; mid <= size/2; mid++) {
-			System.out.print(" ");
+			top += " ";
 		}
-		System.out.println("||");
-		for(int 1; i <= size/2-1; line++) {
+		top += "||\n";
+		System.out.print(top);
+	}
+	
+	public static void bottom(int size) {
+		String bottom = "";
+		for(int line = 1; line <= size/2-1; line++) {
 			for(int space = line; space <= 1; line--) {
 				System.out.print(" ");
 			}
