@@ -84,7 +84,7 @@ public class Calculate {
 	//It accepts two integers and returns a boolean.
 	public static boolean isDivisibleBy(int numToDivide, int numDivideBy) {
 		if(numDivideBy == 0) {
-			throw new IllegalArgumentException("Cannot divide by a zero");
+			throw new IllegalArgumentException("Cannot divide by zero");
 		}
 		if(numToDivide % numDivideBy == 0) {
 			return true;
@@ -152,6 +152,11 @@ public class Calculate {
 	//It accepts a double and an integer and returns a double.
 	public static double exponent(double base, int power) {
 		double exponent = 1;
+		if(base == 0 && power == 0) {
+			throw new IllegalArgumentException("Cannot raise zero to the zeroth power");
+		} else if(base == 0 && power < 0) {
+			throw new IllegalArgumentException("Cannot raise zero to a negative power");
+		}
 		if(power > 0) {
 			for(int i = 1; i <= power; i++) {
 				exponent *= base;
@@ -199,12 +204,18 @@ public class Calculate {
 	//A call to gcf finds the greatest common factor of two integers.
 	//It accepts two positive integers and returns an integer.
 	public static int gcf(int number1, int number2) {
+		if(number1 == 0) {
+			return number2;
+		} else if(number2 == 0) {
+			return number1;
+		}
+		int gcf = 1;
 		for(int i = 2; i <= number1; i++) {
-			if(isDivisibleBy(i, number1) && isDivisibleBy(i, number2)) {
-				return i;
+			if(isDivisibleBy(number1, i) && isDivisibleBy(number2, i)) {
+				gcf = i;
 			}
 		}
-		return 1;
+		return gcf;
 	}
 	
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to two decimals.
