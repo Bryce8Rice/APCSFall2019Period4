@@ -63,6 +63,7 @@ public class ArraysLab3 {
 		return append;
 	}
 	
+	
 	public static int[] remove(int[] arr, int idx) {
 		int[] remove = new int[arr.length-1];
 		for(int i = 0; i < arr.length; i++) {
