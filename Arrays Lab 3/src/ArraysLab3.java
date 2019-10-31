@@ -7,7 +7,7 @@ public class ArraysLab3 {
 		int[] array2 = {3, 4, 1, 2, 7};
 		System.out.println(Arrays.toString(sum(array, array2)));
 		System.out.println(Arrays.toString(append(array, 3)));
-		System.out.println(Arrays.toString(remove(array, 2)));
+		System.out.println(Arrays.toString(remove(array, 5)));
 		/* 
 		
 		3) Write a method remove that accepts an array of integers arr and an integer idx and returns an array of integers consisting of all of the elements of arr except for the element at index idx (thus, the returned array has a length of arr.length – 1).  You can assume arr has at least two elements.
@@ -63,11 +63,13 @@ public class ArraysLab3 {
 		return append;
 	}
 	
-	
 	public static int[] remove(int[] arr, int idx) {
 		int[] remove = new int[arr.length-1];
 		for(int i = 0; i < arr.length; i++) {
-			if(i >= idx) {
+			if(i == idx) {
+				i++;
+			} 
+			if(i >= idx){
 				remove[i-1] = arr[i];
 			} else {
 				remove[i] = arr[i];
