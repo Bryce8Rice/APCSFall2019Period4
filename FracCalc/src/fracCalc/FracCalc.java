@@ -5,8 +5,15 @@ public class FracCalc {
 
   public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
-        System.out.println(produceAnswer("1_2/3 + 4_5/6"));
-    	// TODO: Read the input from the user and call produceAnswer with an equation
+        boolean quit = false;
+        while(!quit) {
+        	System.out.print("Calculation: ");
+        	System.out.println(produceAnswer(userInput.nextLine()));
+        	System.out.print("Do you want to quit? Type \"quit\" to quit. ");
+        	if(userInput.nextLine().equals("quit")) {
+        		quit = true;
+        	}
+        }
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -20,10 +27,7 @@ public class FracCalc {
     public static String produceAnswer(String input){ 
         // TODO: Implement this function to produce the solution to the input
         String answer[] = input.split(" ");
-        String first = answer[0];
-        String operator = answer[1];
-        String second = answer[2];
-        return second;
+        return answer[2];
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
