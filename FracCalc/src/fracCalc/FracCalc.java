@@ -26,8 +26,36 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input){ 
         // TODO: Implement this function to produce the solution to the input
-        String answer[] = input.split(" ");
-        return answer[2];
+        String operation[] = input.split(" ");
+        String op1 = operation[0];
+        String op2 = operation[2];
+        String operator = operation[1];
+        String wholeOp1[] = {op1};
+        if(op1.contains("_")) {
+        	wholeOp1[] = op1.split("_");
+        } else {
+        	wholeOp1[] = ;
+        }
+        if(wholeOp1.length == 2) {
+        	String fracOp1[] = wholeOp1[1].split("/");
+        } else {
+        	String fracOp1[] = wholeOp1[0];
+        }
+        if(op2.contains("_")) {
+            String wholeOp2[] = op2.split("_");   	
+        } else {
+        	String wholeOp2[] = {op2};
+        }
+        if(wholeOp2.length == 2) {
+            String fracOp2[] = wholeOp2[1].split("/");
+        } else {
+        	String fracOp2[] = {wholeOp2};
+        }
+        String numer1 = fracOp1[0];
+        String denom1 = fracOp1[1];
+        String numer2 = fracOp2[0];
+        String denom2 = fracOp2[1];
+        return op2;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
