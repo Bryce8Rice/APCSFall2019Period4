@@ -18,39 +18,35 @@ public class FracCalc {
   
     public static String produceAnswer(String input){ 
         String operation[] = input.split(" ");
-        String op1 = operation[0];
-        String op2 = operation[2];
         String operator = operation[1];
-        String wholeOp1[] = {op1, "0"};
+        String wholeOp1[] = {operation[0], "0"};
         String fracOp1[] = {"0", "1"};
-        if(op1.contains("_")) {
-        	wholeOp1 = op1.split("_");
+        if(operation[0].contains("_")) {
+        	wholeOp1 = operation[0].split("_");
         	if(wholeOp1[1].contains("/")) {
         		fracOp1 = wholeOp1[1].split("/");
         	}
-        } else if(wholeOp1[1].contains("/")) {
+        } else if(wholeOp1[0].contains("/")) {
         	fracOp1 = wholeOp1[0].split("/");
         	wholeOp1[0] = "0";
-        	wholeOp1[1] = op1;
+        	wholeOp1[1] = operation[0];
         }
-        String wholeOp2[] = {op2, "0"};
+        String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
-        if(op2.contains("_")) {
-        	wholeOp2 = op2.split("_");
+        if(operation[2].contains("_")) {
+        	wholeOp2 = operation[2].split("_");
         	if(wholeOp2[1].contains("/")) {
         		fracOp2 = wholeOp2[1].split("/");
         	}
         } else if(wholeOp2[0].contains("/")) {
         	fracOp2 = wholeOp2[0].split("/");
         	wholeOp2[0] = "0";
-        	wholeOp2[1] = op2;
+        	wholeOp2[1] = operation[2];
         }
-        String whole1 = wholeOp1[0];
-        String numer1 = fracOp1[0];
-        String denom1 = fracOp1[1];
-        String whole2 = wholeOp2[0];
-        String numer2 = fracOp2[0];
-        String denom2 = fracOp2[1];
-        return "whole:" + whole2 + " numerator:" + numer2 + " denominator:" + denom2;
+        return "whole:" + wholeOp2[0] + " numerator:" + fracOp2[0] + " denominator:" + fracOp2[1];
+    }
+    
+    public static void improp() {
+    	
     }
 }
