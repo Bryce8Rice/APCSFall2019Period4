@@ -1,5 +1,5 @@
 package fracCalc;
-import java.util.Scanner;
+import java.util.*;
 
 public class FracCalc {
 
@@ -46,7 +46,7 @@ public class FracCalc {
         return "whole:" + wholeOp2[0] + " numerator:" + fracOp2[0] + " denominator:" + fracOp2[1];
     }
     
-    public static void improp() {
-    	
+    public static void improp(String[] a) {
+    	System.out.println(Arrays.toString(a));
     }
 }
