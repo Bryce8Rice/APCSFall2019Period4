@@ -25,6 +25,8 @@ public class FracCalc {
         String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
         split(wholeOp2, fracOp2, operation);
+        System.out.println(Arrays.toString(wholeOp1));
+        System.out.println(Arrays.toString(fracOp1));
         int improp1[] = {0, 0};
         int improp2[] = {0, 0};
         //toImprop(improp1, wholeOp1, fracOp1);
@@ -49,6 +51,7 @@ public class FracCalc {
         	if(whole[1].contains("/")) {
         		frac = whole[1].split("/");
         	}
+        	System.out.println(Arrays.toString(frac));
         } else if(whole[0].contains("/")) {
         	frac = whole[0].split("/");
         	whole[0] = "0";
