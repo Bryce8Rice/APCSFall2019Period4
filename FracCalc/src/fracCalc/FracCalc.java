@@ -21,54 +21,44 @@ public class FracCalc {
         String operator = operation[1];
         String wholeOp1[] = {operation[0], "0"};
         String fracOp1[] = {"0", "1"};
-        split(wholeOp1, fracOp1, operation);
         String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
-        split(wholeOp2, fracOp2, operation);
-        System.out.println(Arrays.toString(wholeOp1));
-        System.out.println(Arrays.toString(fracOp1));
-        int improp1[] = {0, 0};
-        int improp2[] = {0, 0};
-        //toImprop(improp1, wholeOp1, fracOp1);
-        //toImprop(improp2, wholeOp2, fracOp2);
-        //int numer1 = improp1[0];
-        //int denom1 = improp1[1];
-        //int numer2 = improp2[0];
-        //int denom2 = improp2[1];
+        int op1[] = split(wholeOp1, fracOp1, operation);
+        int op2[] = split(wholeOp2, fracOp2, operation);
+        int improp1[] = toImproper(op1);
+        int improp2[] = toImproper(op2);
         if(operator.equals("+")) {
         	
         } else if(operator.equals("-")) {
         	
         } else if(operator.equals("*")) {
-        	//System.out.println(multiply(improp1, improp2));
+        	System.out.println(multiply(improp1, improp2));
+        } else {
+        	
         }
-        return "numer: " + fracOp1[0] + " denom: " + fracOp1[1];
+        return "numer: " + op1[1] + " denom: " + op1[2];
     }
     
-    public static void split(String[] whole, String[] frac, String[] operation) {
+    public static int[] split(String[] whole, String[] frac, String[] operation) {
     	if(operation[0].contains("_")) {
         	whole = operation[0].split("_");
-        	if(whole[1].contains("/")) {
-        		frac = whole[1].split("/");
-        	}
-        	System.out.println(Arrays.toString(frac));
+        	frac = whole[1].split("/");
         } else if(whole[0].contains("/")) {
         	frac = whole[0].split("/");
         	whole[0] = "0";
         	whole[1] = operation[0];
         }
+    	int[] answer = {Integer.parseInt(whole[0]), Integer.parseInt(frac[0]), Integer.parseInt(frac[1])};
+    	return answer;
     }
     
-    /*public static void toImprop(int[] improp, String[] wholeOp, String[] fracOp) {
-    	int whole = Integer.parseInt(wholeOp[0]);
-    	int numer = Integer.parseInt(fracOp[0]);
-    	int denom = Integer.parseInt(fracOp[1]);
-    	numer = whole * denom + numer;
-    	improp[0] = numer;
-    	improp[1] = denom;
-    }*/
+    public static int[] toImproper(int[] op) {
+    	int numer = op[0] * op[2] + op[1];
+    	int improper[] = {numer, op[2]};
+    	return improper;
+    }
     
-    /*public static void commonDenom(int[] op1, int[] op2) {
+    public static void commonDenom(int[] op1, int[] op2) {
     	op1[1] = op1[1] * op2[1];
     	op2[2] = op1[1];
     }
@@ -81,5 +71,7 @@ public class FracCalc {
     	int numer = op1[0] * op2[0];
     	int denom = op1[1] * op2[1];
     	return numer + "/" + denom;
-    }*/
+    }
+    
+    public static String divide
 }
