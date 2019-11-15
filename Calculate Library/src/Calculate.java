@@ -60,7 +60,6 @@ public class Calculate {
 	public static String toImproperFrac(int whole, int numer, int denom) {
 		int answer = whole * denom + numer;
 		return answer + "/" + denom;
-		
 	}
 	
 	//A call to toMixedNum converts an improper fraction(with its pieces provided separately in the order numerator then denominator) into a mixed number.

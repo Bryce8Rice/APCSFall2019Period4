@@ -14,6 +14,7 @@ public class FracCalc {
         		quit = true;
         	}
         }
+        userInput.close();
     }
   
     public static String produceAnswer(String input){ 
@@ -23,55 +24,123 @@ public class FracCalc {
         String fracOp1[] = {"0", "1"};
         String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
-        int op1[] = split(wholeOp1, fracOp1, operation);
-        int op2[] = split(wholeOp2, fracOp2, operation);
+        int op1[] = split(wholeOp1, fracOp1);
+        int op2[] = split(wholeOp2, fracOp2);
         int improp1[] = toImproper(op1);
         int improp2[] = toImproper(op2);
+        String answer = "";
         if(operator.equals("+")) {
-        	
+        	answer = add(improp1, improp2);
         } else if(operator.equals("-")) {
-        	
+        	answer = subtract(improp1, improp2);
         } else if(operator.equals("*")) {
-        	System.out.println(multiply(improp1, improp2));
+        	answer = multiply(improp1, improp2);
         } else {
-        	
+        	answer = divide(improp1, improp2);
         }
-        return "numer: " + op1[1] + " denom: " + op1[2];
+        return answer;
     }
     
-    public static int[] split(String[] whole, String[] frac, String[] operation) {
-    	if(operation[0].contains("_")) {
-        	whole = operation[0].split("_");
+    public static int[] split(String[] whole, String[] frac) {
+    	if(whole[0].contains("_")) {
+        	whole = whole[0].split("_");
         	frac = whole[1].split("/");
         } else if(whole[0].contains("/")) {
         	frac = whole[0].split("/");
         	whole[0] = "0";
-        	whole[1] = operation[0];
+        	whole[1] = frac[0] + "/" + frac[1];
         }
     	int[] answer = {Integer.parseInt(whole[0]), Integer.parseInt(frac[0]), Integer.parseInt(frac[1])};
     	return answer;
     }
     
     public static int[] toImproper(int[] op) {
-    	int numer = op[0] * op[2] + op[1];
+    	int numer = 0;
+    	if(op[0] < 0) {
+    		numer = op[0] * op[2] - op[1];
+    	} else {
+    		numer = op[0] * op[2] + op[1];
+    	}
     	int improper[] = {numer, op[2]};
     	return improper;
     }
     
-    public static void commonDenom(int[] op1, int[] op2) {
+    /*public static void commonDenom(int[] op1, int[] op2) {
     	op1[1] = op1[1] * op2[1];
-    	op2[2] = op1[1];
+    	op1[0] = op1[0] * op2[1];
+    }*/
+    
+    public static String add(int[] op1, int[] op2) {
+    	//commonDenom(op1, op2);
+    	//commonDenom(op2, op1);
+    	int numer = op1[0]*op2[1] + op2[0]*op1[1];
+    	int denom = op1[1]*op2[1];
+    	return reduce(numer, denom);
     }
     
-    public static void add(int[] op1, int[] op2) {
-    	
+    public static String subtract(int[] op1, int[] op2) {
+    	//commonDenom(op1, op2);
+    	//commonDenom(op2, op1);
+    	int numer = op1[0]*op2[1] - op2[0]*op1[1];
+    	int denom = op1[1]*op2[1];
+    	return reduce(numer, denom);
     }
-    
     public static String multiply(int[] op1, int[] op2) {
+    	System.out.println(Arrays.toString(op1));
+    	System.out.println(Arrays.toString(op2));
     	int numer = op1[0] * op2[0];
     	int denom = op1[1] * op2[1];
-    	return numer + "/" + denom;
+    	return reduce(numer, denom);
     }
     
-    public static String divide
+    public static String divide(int[] op1, int[] op2) {
+    	int numer = op1[0] * op2[1];
+    	int denom = op1[1] * op2[0];
+    	return reduce(numer, denom);
+    }
+    
+    public static boolean isDivisibleBy(int numToDivide, int numDivideBy) {
+		if(numDivideBy == 0) {
+			throw new IllegalArgumentException("Cannot divide by zero");
+		}
+		if(numToDivide % numDivideBy == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+    
+    public static int gcf(int number1, int number2) {
+		if(number1 == 0) {
+			return number2;
+		} else if(number2 == 0) {
+			return number1;
+		}
+		int gcf = 1;
+		for(int i = 2; i <= number1; i++) {
+			if(isDivisibleBy(number1, i) && isDivisibleBy(number2, i)) {
+				gcf = i;
+			}
+		}
+		return gcf;
+	}
+    
+    public static String reduce(int numer, int denom) {
+    	int gcf = gcf(numer, denom);
+    	numer = numer/gcf;
+    	denom = denom/gcf;
+		int whole = numer/denom;
+		int remainder = numer%denom;
+		String answer = "";
+		if(whole == 0 && numer == 0) {
+			answer += 0;
+		} else if(remainder == 0) {
+			answer += whole;
+		} else if(whole == 0) {
+			answer += remainder + "/" + denom;
+		} else {
+			answer += whole + "_" + remainder + "/" + denom;
+		}
+		return answer;
+    }
 }
