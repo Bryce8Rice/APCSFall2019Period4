@@ -5,14 +5,12 @@ public class FracCalc {
 
   public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
-        boolean quit = false;
-        while(!quit) {
+        String quit = "";
+        while(!quit.equals("quit")) {
         	System.out.print("Calculation: ");
         	System.out.println(produceAnswer(userInput.nextLine()));
         	System.out.print("Do you want to quit? Type \"quit\" to quit. ");
-        	if(userInput.nextLine().equals("quit")) {
-        		quit = true;
-        	}
+        	quit = userInput.nextLine();
         }
         userInput.close();
     }
@@ -26,8 +24,10 @@ public class FracCalc {
         String fracOp2[] = {"0", "1"};
         int op1[] = split(wholeOp1, fracOp1);
         int op2[] = split(wholeOp2, fracOp2);
-        int improp1[] = toImproper(op1);
-        int improp2[] = toImproper(op2);
+        //int improp1[] = toImproper(op1);
+        //int improp2[] = toImproper(op2);
+        toImproper(op1);
+        toImproper(op2);
         String answer = "";
         if(operator.equals("+")) {
         	answer = add(improp1, improp2);
@@ -54,48 +54,46 @@ public class FracCalc {
     	return answer;
     }
     
-    public static int[] toImproper(int[] op) {
+    /*public static int[] toImproper(int[] op) {
     	int numer = 0;
     	if(op[0] < 0) {
-    		numer = op[0] * op[2] - op[1];
+    		numer = op[0]*op[2]-op[1];
     	} else {
     		numer = op[0] * op[2] + op[1];
     	}
     	int improper[] = {numer, op[2]};
     	return improper;
-    }
-    
-    /*public static void commonDenom(int[] op1, int[] op2) {
-    	op1[1] = op1[1] * op2[1];
-    	op1[0] = op1[0] * op2[1];
     }*/
     
+    public static void toImproper(int[] op) {
+    	if(op[0] < 0) {
+    		op[1] = op[0]*op[2]-op[1];
+    	} else {
+    		op[1] = op[0] * op[2] + op[1];
+    	}
+    }
+    
     public static String add(int[] op1, int[] op2) {
-    	//commonDenom(op1, op2);
-    	//commonDenom(op2, op1);
-    	int numer = op1[0]*op2[1] + op2[0]*op1[1];
-    	int denom = op1[1]*op2[1];
+    	int numer = op1[1]*op2[2] + op2[1]*op1[2];
+    	int denom = op1[2]*op2[2];
     	return reduce(numer, denom);
     }
     
     public static String subtract(int[] op1, int[] op2) {
-    	//commonDenom(op1, op2);
-    	//commonDenom(op2, op1);
-    	int numer = op1[0]*op2[1] - op2[0]*op1[1];
-    	int denom = op1[1]*op2[1];
+    	int numer = op1[1]*op2[2] - op2[1]*op1[2];
+    	int denom = op1[2]*op2[2];
     	return reduce(numer, denom);
     }
+    
     public static String multiply(int[] op1, int[] op2) {
-    	System.out.println(Arrays.toString(op1));
-    	System.out.println(Arrays.toString(op2));
-    	int numer = op1[0] * op2[0];
-    	int denom = op1[1] * op2[1];
+    	int numer = op1[1] * op2[1];
+    	int denom = op1[2] * op2[2];
     	return reduce(numer, denom);
     }
     
     public static String divide(int[] op1, int[] op2) {
-    	int numer = op1[0] * op2[1];
-    	int denom = op1[1] * op2[0];
+    	int numer = op1[1] * op2[2];
+    	int denom = op1[2] * op2[1];
     	return reduce(numer, denom);
     }
     
@@ -139,7 +137,15 @@ public class FracCalc {
 		} else if(whole == 0) {
 			answer += remainder + "/" + denom;
 		} else {
-			answer += whole + "_" + remainder + "/" + denom;
+			if(remainder < 0 && denom < 0) {
+				answer += whole + "_" + -remainder + "/" + -denom;
+			} else if(remainder < 0) {
+				answer += whole + "_" + -remainder + "/" + denom;
+			} else if (denom < 0){
+				answer += whole + "_" + remainder + "/" + -denom;
+			} else {
+				answer += whole + "_" + remainder + "/" + denom;
+			}
 		}
 		return answer;
     }
