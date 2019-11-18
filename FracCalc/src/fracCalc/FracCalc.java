@@ -20,6 +20,8 @@ public class FracCalc {
         String operator = operation[1];
         String wholeOp1[] = {operation[0], "0"};
         String fracOp1[] = {"0", "1"};
+        String op1[] = {operation[0], "0", "1"};
+        String op2[] = {operation[0], "0", "1"};
         String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
         int op1[] = split(wholeOp1, fracOp1);
@@ -41,7 +43,7 @@ public class FracCalc {
         return answer;
     }
     
-    public static int[] split(String[] whole, String[] frac) {
+    /*public static int[] split(String[] whole, String[] frac) {
     	if(whole[0].contains("_")) {
         	whole = whole[0].split("_");
         	frac = whole[1].split("/");
@@ -51,6 +53,19 @@ public class FracCalc {
         	whole[1] = frac[0] + "/" + frac[1];
         }
     	int[] answer = {Integer.parseInt(whole[0]), Integer.parseInt(frac[0]), Integer.parseInt(frac[1])};
+    	return answer;
+    }*/
+    
+    public static int[] split(String[] operand) {
+    	if(operand[0].contains("_")) {
+        	operand = operand[0].split("_");
+        	operand = operand[1].split("/");
+        } else if(operand[0].contains("/")) {
+        	operand = operand[0].split("/");
+        	operand[0] = "0";
+        	operand[1] = operand[0] + "/" + operand[1];
+        }
+    	int[] answer = {Integer.parseInt(operand[0]), Integer.parseInt(operand[0]), Integer.parseInt(operand[1])};
     	return answer;
     }
     
