@@ -20,30 +20,28 @@ public class FracCalc {
         String operator = operation[1];
         String wholeOp1[] = {operation[0], "0"};
         String fracOp1[] = {"0", "1"};
-        String op1[] = {operation[0], "0", "1"};
-        String op2[] = {operation[0], "0", "1"};
         String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
+        //String op1[] = {operation[0], "0", "1"};
+        //String op2[] = {operation[0], "0", "1"};
         int op1[] = split(wholeOp1, fracOp1);
         int op2[] = split(wholeOp2, fracOp2);
-        //int improp1[] = toImproper(op1);
-        //int improp2[] = toImproper(op2);
         toImproper(op1);
         toImproper(op2);
         String answer = "";
         if(operator.equals("+")) {
-        	answer = add(improp1, improp2);
+        	answer = add(op1, op2);
         } else if(operator.equals("-")) {
-        	answer = subtract(improp1, improp2);
+        	answer = subtract(op1, op2);
         } else if(operator.equals("*")) {
-        	answer = multiply(improp1, improp2);
+        	answer = multiply(op1, op2);
         } else {
-        	answer = divide(improp1, improp2);
+        	answer = divide(op1, op2);
         }
         return answer;
     }
     
-    /*public static int[] split(String[] whole, String[] frac) {
+    public static int[] split(String[] whole, String[] frac) {
     	if(whole[0].contains("_")) {
         	whole = whole[0].split("_");
         	frac = whole[1].split("/");
@@ -54,9 +52,9 @@ public class FracCalc {
         }
     	int[] answer = {Integer.parseInt(whole[0]), Integer.parseInt(frac[0]), Integer.parseInt(frac[1])};
     	return answer;
-    }*/
+    }
     
-    public static int[] split(String[] operand) {
+    /*public static int[] split(String[] operand) {
     	if(operand[0].contains("_")) {
         	operand = operand[0].split("_");
         	operand = operand[1].split("/");
@@ -67,17 +65,6 @@ public class FracCalc {
         }
     	int[] answer = {Integer.parseInt(operand[0]), Integer.parseInt(operand[0]), Integer.parseInt(operand[1])};
     	return answer;
-    }
-    
-    /*public static int[] toImproper(int[] op) {
-    	int numer = 0;
-    	if(op[0] < 0) {
-    		numer = op[0]*op[2]-op[1];
-    	} else {
-    		numer = op[0] * op[2] + op[1];
-    	}
-    	int improper[] = {numer, op[2]};
-    	return improper;
     }*/
     
     public static void toImproper(int[] op) {
