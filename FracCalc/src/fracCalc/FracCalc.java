@@ -96,9 +96,7 @@ public class FracCalc {
 		int gcf = 1;
 		if(number1 < 0) {number1 = -number1;}
 		for(int i = 2; i <= number1; i++) {
-			if(isDivisibleBy(number1, i) && isDivisibleBy(number2, i)) {
-				gcf = i;
-			}
+			if(isDivisibleBy(number1, i) && isDivisibleBy(number2, i)) {gcf = i;}
 		}
 		return gcf;
 	}
@@ -121,9 +119,7 @@ public class FracCalc {
 				answer += remainder + "/" + denom;
 			}
 		} else {
-			if(denom < 0) {
-				denom = -denom;
-			}
+			if(denom < 0) {denom = -denom;}
 			if(remainder < 0) {
 				answer += whole + "_" + -remainder + "/" + denom;
 			} else {
