@@ -22,12 +22,9 @@ public class FracCalc {
         String fracOp1[] = {"0", "1"};
         String wholeOp2[] = {operation[2], "0"};
         String fracOp2[] = {"0", "1"};
-        //String op1[] = {operation[0], "0", "1"};
-        //String op2[] = {operation[0], "0", "1"};
         int op1[] = split(wholeOp1, fracOp1);
         int op2[] = split(wholeOp2, fracOp2);
-        toImproper(op1);
-        toImproper(op2);
+        //int answer[] = {0, 0};
         String answer = "";
         if(operator.equals("+")) {
         	answer = add(op1, op2);
@@ -51,21 +48,9 @@ public class FracCalc {
         	whole[1] = frac[0] + "/" + frac[1];
         }
     	int[] answer = {Integer.parseInt(whole[0]), Integer.parseInt(frac[0]), Integer.parseInt(frac[1])};
+    	toImproper(answer);
     	return answer;
     }
-    
-    /*public static int[] split(String[] operand) {
-    	if(operand[0].contains("_")) {
-        	operand = operand[0].split("_");
-        	operand = operand[1].split("/");
-        } else if(operand[0].contains("/")) {
-        	operand = operand[0].split("/");
-        	operand[0] = "0";
-        	operand[1] = operand[0] + "/" + operand[1];
-        }
-    	int[] answer = {Integer.parseInt(operand[0]), Integer.parseInt(operand[0]), Integer.parseInt(operand[1])};
-    	return answer;
-    }*/
     
     public static void toImproper(int[] op) {
     	if(op[0] < 0) {
@@ -100,9 +85,6 @@ public class FracCalc {
     }
     
     public static boolean isDivisibleBy(int numToDivide, int numDivideBy) {
-		if(numDivideBy == 0) {
-			throw new IllegalArgumentException("Cannot divide by zero");
-		}
 		if(numToDivide % numDivideBy == 0) {
 			return true;
 		} else {
@@ -111,12 +93,8 @@ public class FracCalc {
 	}
     
     public static int gcf(int number1, int number2) {
-		if(number1 == 0) {
-			return number2;
-		} else if(number2 == 0) {
-			return number1;
-		}
 		int gcf = 1;
+		if(number1 < 0) {number1 = -number1;}
 		for(int i = 2; i <= number1; i++) {
 			if(isDivisibleBy(number1, i) && isDivisibleBy(number2, i)) {
 				gcf = i;
@@ -137,14 +115,17 @@ public class FracCalc {
 		} else if(remainder == 0) {
 			answer += whole;
 		} else if(whole == 0) {
-			answer += remainder + "/" + denom;
+			if(denom < 0) {
+				answer += -remainder + "/" + -denom;
+			} else {
+				answer += remainder + "/" + denom;
+			}
 		} else {
-			if(remainder < 0 && denom < 0) {
-				answer += whole + "_" + -remainder + "/" + -denom;
-			} else if(remainder < 0) {
+			if(denom < 0) {
+				denom = -denom;
+			}
+			if(remainder < 0) {
 				answer += whole + "_" + -remainder + "/" + denom;
-			} else if (denom < 0){
-				answer += whole + "_" + remainder + "/" + -denom;
 			} else {
 				answer += whole + "_" + remainder + "/" + denom;
 			}
