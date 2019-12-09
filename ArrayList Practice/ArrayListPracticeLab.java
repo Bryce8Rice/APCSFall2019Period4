@@ -130,8 +130,6 @@ public class ArrayListPracticeLab {
 		myList.add("it");
 		printMe(myList);
 		
-		
-		
 		// To test your maxLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your maxLength method.  (You'll want to complete the convertArrayToList method first.)
 		// Expected output:  6, 27, 0
@@ -141,8 +139,6 @@ public class ArrayListPracticeLab {
 		System.out.println(maxLength(convertArrayToList(test_max_1)));
 		System.out.println(maxLength(convertArrayToList(test_max_2)));
 		System.out.println(maxLength(convertArrayToList(test_max_3)));
-		
-		
 		
 		// To test your swapPairs method, convert the following to ArrayLists of Strings and 
 		// pass them into your swapPairs method.  
@@ -173,7 +169,6 @@ public class ArrayListPracticeLab {
 		System.out.println(removeEvenLength(convertArrayToList(test_rem_2)));
 		System.out.println(removeEvenLength(convertArrayToList(test_rem_3)));	
 		
-		
 		// To test your doubleList method, convert the following to ArrayLists of Strings and 
 		// pass them into your doubleList method.  
 		// Expected output:  
@@ -187,8 +182,4 @@ public class ArrayListPracticeLab {
 		doubleList(convertArrayToList(test_doub_2));
 		doubleList(convertArrayToList(test_doub_3));
 	}
-		
-		
-
-
 }
