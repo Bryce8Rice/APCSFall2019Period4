@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-public class ArrayListPracticeLab 
-{
+public class ArrayListPracticeLab {
 	// printMe is just a quick tool to check your work.  Use it in conjunction with the test cases in main
 	public static void printMe(ArrayList<String> theList) {
 		for (String str : theList)
@@ -10,6 +9,8 @@ public class ArrayListPracticeLab
 		System.out.println();
 		
 	}
+	
+	
 	
 	/* 
 	 * convertArrayToList
@@ -46,7 +47,6 @@ public class ArrayListPracticeLab
 	
 	
 	
-	
 	/*
 	 * swapPairs
 	 * 
@@ -64,8 +64,17 @@ public class ArrayListPracticeLab
 	 *  For example, if the input list is: {"to", "be", "or", "not", "to", "be", "hamlet"} 
 	 *  The returned list should contain {"be", "to", "not", "or", "be", "to", "hamlet"}
 	 */
-	
-	
+	public static ArrayList<String> swapPairs(ArrayList<String> aList) {
+		ArrayList<String> swapped = new ArrayList<String>();
+		for(int i = 0; i < aList.size()-1; i+=2) {
+			swapped.add(i, aList.get(i+1));
+			swapped.add(i+1, aList.get(i));
+		}
+		if(aList.size() % 2 == 1) {
+			swapped.add(aList.get(aList.size()-1));
+		}
+		return swapped;
+	}
 	
 	
 	
@@ -102,9 +111,12 @@ public class ArrayListPracticeLab
 	 * after the method finishes executing.
 	 */
 	public static void doubleList(ArrayList<String> aList) {
+		ArrayList<String> doubleList = new ArrayList<String>();
 		for(int i = 0; i < aList.size(); i++) {
-			aList.add(i+1, aList.get(i));
+			doubleList.add(aList.get(i));
+			doubleList.add(aList.get(i));
 		}
+		printMe(doubleList);
 	}
 	
 	
@@ -113,7 +125,12 @@ public class ArrayListPracticeLab
 	public static void main(String[] args) {
 		// Declare an ArrayList of String named myList.  Then fill it with: "this", "is", "it".  Print myList using printMe().
 		ArrayList<String> myList = new ArrayList<String>();
+		myList.add("this");
+		myList.add("is");
+		myList.add("it");
 		printMe(myList);
+		
+		
 		
 		// To test your maxLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your maxLength method.  (You'll want to complete the convertArrayToList method first.)
@@ -121,10 +138,9 @@ public class ArrayListPracticeLab
 		String[] test_max_1 = {"to", "be", "or", "not", "to", "be", "hamlet"};  
 		String[] test_max_2 = {"Only one really long string"};
 		String[] test_max_3 = {};
-		System.out.println(converArrayToList())
-		
-		//printMe( maxLength( convertArrayToList(test_max_1) ) );
-		
+		System.out.println(maxLength(convertArrayToList(test_max_1)));
+		System.out.println(maxLength(convertArrayToList(test_max_2)));
+		System.out.println(maxLength(convertArrayToList(test_max_3)));
 		
 		
 		
@@ -139,9 +155,10 @@ public class ArrayListPracticeLab
 		String[] test_swap_2 = {"I", "love", "programming!"};
 		String[] test_swap_3 = {"don't move me"};
 		String[] test_swap_4 = {};
-
-		
-		
+		printMe(swapPairs(convertArrayToList(test_swap_1)));
+		printMe(swapPairs(convertArrayToList(test_swap_2)));
+		printMe(swapPairs(convertArrayToList(test_swap_3)));
+		printMe(swapPairs(convertArrayToList(test_swap_4)));
 
 		// To test your removeEvenLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your removeEvenLength method.  
@@ -152,8 +169,9 @@ public class ArrayListPracticeLab
 		String[] test_rem_1 = {"This", "is", "a", "test"};
 		String[] test_rem_2 = {"Did", "you", "solve", "it", "or", "what?"};
 		String[] test_rem_3 = {};
-				
-		
+		System.out.println(removeEvenLength(convertArrayToList(test_rem_1)));
+		System.out.println(removeEvenLength(convertArrayToList(test_rem_2)));
+		System.out.println(removeEvenLength(convertArrayToList(test_rem_3)));	
 		
 		
 		// To test your doubleList method, convert the following to ArrayLists of Strings and 
@@ -164,8 +182,10 @@ public class ArrayListPracticeLab
 		//    <blank>
 		String[] test_doub_1 = {"how", "are", "you?"};
 		String[] test_doub_2 = {"One string only"};		
-		String[] test_doub_3 = {};		
-		
+		String[] test_doub_3 = {};
+		doubleList(convertArrayToList(test_doub_1));
+		doubleList(convertArrayToList(test_doub_2));
+		doubleList(convertArrayToList(test_doub_3));
 	}
 		
 		
